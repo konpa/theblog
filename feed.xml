@@ -4,10 +4,10 @@
     <title>Blog • Un Pixel • EN</title>
     <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 </description>
-    <link>http://blog.unpixel.fr/</link>
-    <atom:link href="http://blog.unpixel.fr/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 16 Nov 2015 22:48:58 +0100</pubDate>
-    <lastBuildDate>Mon, 16 Nov 2015 22:48:58 +0100</lastBuildDate>
+    <link>http://theblog.unpixel.fr/</link>
+    <atom:link href="http://theblog.unpixel.fr/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Mon, 16 Nov 2015 23:12:27 +0100</pubDate>
+    <lastBuildDate>Mon, 16 Nov 2015 23:12:27 +0100</lastBuildDate>
     <generator>Jekyll v3.0.0</generator>
     
       <item>
@@ -202,7 +202,7 @@ layout: default_post
 
 &lt;p&gt;You should now see something like this.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://blog.unpixel.fr/img/18.png&quot; alt=&quot;Styling&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://theblog.unpixel.fr/img/18.png&quot; alt=&quot;Styling&quot; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;the-post-content&quot;&gt;The post content&lt;/h1&gt;
 
@@ -274,14 +274,14 @@ layout: default_post
 
 &lt;p&gt;“Et voila!”&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://blog.unpixel.fr/img/19.png&quot; alt=&quot;Styling&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://theblog.unpixel.fr/img/19.png&quot; alt=&quot;Styling&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;That’s it for this series of tutorials showing how to customize your Jekyll blog. I hope you enjoyed it :)&lt;/p&gt;
 
 </description>
         <pubDate>Sat, 14 Nov 2015 09:00:00 +0100</pubDate>
-        <link>http://blog.unpixel.fr/jekyll/blog/sass/2015/11/14/customize-your-jekyll-blog-part-ii.html</link>
-        <guid isPermaLink="true">http://blog.unpixel.fr/jekyll/blog/sass/2015/11/14/customize-your-jekyll-blog-part-ii.html</guid>
+        <link>http://theblog.unpixel.fr/jekyll/blog/sass/2015/11/14/customize-your-jekyll-blog-part-ii.html</link>
+        <guid isPermaLink="true">http://theblog.unpixel.fr/jekyll/blog/sass/2015/11/14/customize-your-jekyll-blog-part-ii.html</guid>
         
         
         <category>jekyll</category>
@@ -335,7 +335,7 @@ layout: default_post
 
 &lt;p&gt;You shoud now see someting like this.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://blog.unpixel.fr/img/14.png&quot; alt=&quot;Styling&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://theblog.unpixel.fr/img/14.png&quot; alt=&quot;Styling&quot; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;the-header&quot;&gt;The header&lt;/h1&gt;
 
@@ -409,7 +409,7 @@ layout: default_post
 
 &lt;p&gt;You should now see this.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://blog.unpixel.fr/img/15.png&quot; alt=&quot;Styling&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://theblog.unpixel.fr/img/15.png&quot; alt=&quot;Styling&quot; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;the-posts-list&quot;&gt;The posts list&lt;/h1&gt;
 &lt;p&gt;We will start by making some changes to the &lt;code&gt;index.html&lt;/code&gt; file.&lt;/p&gt;
@@ -541,7 +541,7 @@ layout: default
 
 &lt;p&gt;Our blog should look like this.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://blog.unpixel.fr/img/16.png&quot; alt=&quot;Styling&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://theblog.unpixel.fr/img/16.png&quot; alt=&quot;Styling&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;We’ll finish by adding a cool hover effect to our post titles that you can find on my &lt;a href=&quot;http://codepen.io/unpixel&quot;&gt;codepen&lt;/a&gt;.&lt;/p&gt;
 
@@ -623,14 +623,14 @@ layout: default
 
 &lt;p&gt;Here our footer.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://blog.unpixel.fr/img/17.png&quot; alt=&quot;Styling&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://theblog.unpixel.fr/img/17.png&quot; alt=&quot;Styling&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;That’s it for this tutorial. Stay tuned for part II!&lt;/p&gt;
 
 </description>
         <pubDate>Fri, 13 Nov 2015 09:00:00 +0100</pubDate>
-        <link>http://blog.unpixel.fr/jekyll/blog/sass/2015/11/13/customize-your-jekyll-blog-part-i.html</link>
-        <guid isPermaLink="true">http://blog.unpixel.fr/jekyll/blog/sass/2015/11/13/customize-your-jekyll-blog-part-i.html</guid>
+        <link>http://theblog.unpixel.fr/jekyll/blog/sass/2015/11/13/customize-your-jekyll-blog-part-i.html</link>
+        <guid isPermaLink="true">http://theblog.unpixel.fr/jekyll/blog/sass/2015/11/13/customize-your-jekyll-blog-part-i.html</guid>
         
         
         <category>jekyll</category>
@@ -792,7 +792,7 @@ layout: default
 
 &lt;p&gt;That’s it! You now just have to fire &lt;code&gt;gulp&lt;/code&gt; in your terminal. A new tab will open automatically and will update automatically as well when you save changes in your files. Try it by making some changes to the &lt;code&gt;_sass/_base.scss&lt;/code&gt; file or the &lt;code&gt;index.html&lt;/code&gt; file.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://blog.unpixel.fr/img/13.png&quot; alt=&quot;Automatic reloading&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://theblog.unpixel.fr/img/13.png&quot; alt=&quot;Automatic reloading&quot; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;switch-easily-between-local-and-production&quot;&gt;Switch easily between local and production&lt;/h1&gt;
 
@@ -902,8 +902,8 @@ $ npm install --save-dev imagemin-pngquant&lt;/code&gt;&lt;/pre&gt;&lt;/figure&g
 
 </description>
         <pubDate>Thu, 12 Nov 2015 09:00:00 +0100</pubDate>
-        <link>http://blog.unpixel.fr/jekyll/blog/gulp/2015/11/12/better-jekyll-workflow-with-gulp.html</link>
-        <guid isPermaLink="true">http://blog.unpixel.fr/jekyll/blog/gulp/2015/11/12/better-jekyll-workflow-with-gulp.html</guid>
+        <link>http://theblog.unpixel.fr/jekyll/blog/gulp/2015/11/12/better-jekyll-workflow-with-gulp.html</link>
+        <guid isPermaLink="true">http://theblog.unpixel.fr/jekyll/blog/gulp/2015/11/12/better-jekyll-workflow-with-gulp.html</guid>
         
         
         <category>jekyll</category>
@@ -955,7 +955,7 @@ $ npm install --save-dev imagemin-pngquant&lt;/code&gt;&lt;/pre&gt;&lt;/figure&g
 
 &lt;p&gt;Now you can go to &lt;a href=&quot;http://127.0.0.1:4000/&quot;&gt;http://127.0.0.1:4000/&lt;/a&gt; and see your blog in action!&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://blog.unpixel.fr/img/1.png&quot; alt=&quot;Blog in action&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://theblog.unpixel.fr/img/1.png&quot; alt=&quot;Blog in action&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Now we want to customize it. All the config informations are in the &lt;code&gt;_config.yml&lt;/code&gt; file, located at the root of your folder. Let’s open it in our favorite editor and update it.&lt;/p&gt;
 
@@ -972,7 +972,7 @@ $ npm install --save-dev imagemin-pngquant&lt;/code&gt;&lt;/pre&gt;&lt;/figure&g
 
 &lt;p&gt;Stop and relaunch your &lt;code&gt;jekyll serve&lt;/code&gt; command and see the result!&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://blog.unpixel.fr/img/2.png&quot; alt=&quot;Blog in action&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://theblog.unpixel.fr/img/2.png&quot; alt=&quot;Blog in action&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;That’s it for the first part! We’ll keep it simple for now and won’t customize the theme of our blog. But stay tuned, I’ll write another tutorial explaining how to do this soon ;)&lt;/p&gt;
 
@@ -999,7 +999,7 @@ $ npm install --save-dev imagemin-pngquant&lt;/code&gt;&lt;/pre&gt;&lt;/figure&g
 
 &lt;p&gt;Now you can add a local image to your post like this &lt;code&gt;![image title]({{ site.url }}/img/image-name.jpg)&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://blog.unpixel.fr/img/2-1.png&quot; alt=&quot;Blog in action&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://theblog.unpixel.fr/img/2-1.png&quot; alt=&quot;Blog in action&quot; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;hosting-our-blog-on-github&quot;&gt;Hosting our blog on github&lt;/h1&gt;
 
@@ -1007,11 +1007,11 @@ $ npm install --save-dev imagemin-pngquant&lt;/code&gt;&lt;/pre&gt;&lt;/figure&g
 
 &lt;p&gt;Go to your &lt;a href=&quot;https://github.com&quot;&gt;github&lt;/a&gt; account and create a new repository.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://blog.unpixel.fr/img/3.png&quot; alt=&quot;New repository&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://theblog.unpixel.fr/img/3.png&quot; alt=&quot;New repository&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Then copy the ssh url (or https if you prefer) of your new repository.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://blog.unpixel.fr/img/4.png&quot; alt=&quot;Copy url&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://theblog.unpixel.fr/img/4.png&quot; alt=&quot;Copy url&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Now, open a terminal at the root of your blog project, go to the &lt;code&gt;_site&lt;/code&gt; folder and create a new git repository.&lt;/p&gt;
 
@@ -1044,11 +1044,11 @@ $ npm install --save-dev imagemin-pngquant&lt;/code&gt;&lt;/pre&gt;&lt;/figure&g
 
 &lt;p&gt;First, &lt;a href=&quot;https://disqus.com/profile/signup/&quot;&gt;create an account&lt;/a&gt; and then &lt;a href=&quot;http://disqus.com/register&quot;&gt;register a new site&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://blog.unpixel.fr/img/5.png&quot; alt=&quot;Register a new site&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://theblog.unpixel.fr/img/5.png&quot; alt=&quot;Register a new site&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;You should then be redirected on the installation page asking you to choose your platform. Choose Universal Code and copy the code of the first step.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://blog.unpixel.fr/img/6.png&quot; alt=&quot;Disqus installation&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://theblog.unpixel.fr/img/6.png&quot; alt=&quot;Disqus installation&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Then we need to add this code to our post template file located at &lt;code&gt;_layouts/post.html&lt;/code&gt;. Open this file and add at the end of the &lt;code&gt;&amp;lt;article&amp;gt;&lt;/code&gt; block the copied code between &lt;code&gt;{% if page.comments %}&lt;/code&gt; and &lt;code&gt;{% endif %}&lt;/code&gt;.&lt;/p&gt;
 
@@ -1110,7 +1110,7 @@ layout: default
 
 &lt;p&gt;Now we just have to add &lt;code&gt;comments: true&lt;/code&gt; to the &lt;a href=&quot;http://jekyllrb.com/docs/frontmatter/&quot;&gt;front matter&lt;/a&gt; of our post and the disqus comment section will load automatically.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://blog.unpixel.fr/img/7.png&quot; alt=&quot;Disqus comment section&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://theblog.unpixel.fr/img/7.png&quot; alt=&quot;Disqus comment section&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Run &lt;code&gt;jekyll build&lt;/code&gt;, commit the changes, and push the &lt;code&gt;_site&lt;/code&gt; folder to github.&lt;/p&gt;
 
@@ -1126,14 +1126,14 @@ layout: default
 
 &lt;p&gt;Now, go to your registrar and update the DNS records of your domain name. Create a &lt;strong&gt;CNAME record&lt;/strong&gt; like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://blog.unpixel.fr/img/8.png&quot; alt=&quot;Create CNAME&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://theblog.unpixel.fr/img/8.png&quot; alt=&quot;Create CNAME&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Wait a little and your subdomain should redirect to your blog. Don’t forget to update your site url in &lt;code&gt;_config.yml&lt;/code&gt;.&lt;/p&gt;
 
 </description>
         <pubDate>Wed, 11 Nov 2015 09:00:00 +0100</pubDate>
-        <link>http://blog.unpixel.fr/jekyll/blog/github/2015/11/11/build-your-own-blog-with-jekyll.html</link>
-        <guid isPermaLink="true">http://blog.unpixel.fr/jekyll/blog/github/2015/11/11/build-your-own-blog-with-jekyll.html</guid>
+        <link>http://theblog.unpixel.fr/jekyll/blog/github/2015/11/11/build-your-own-blog-with-jekyll.html</link>
+        <guid isPermaLink="true">http://theblog.unpixel.fr/jekyll/blog/github/2015/11/11/build-your-own-blog-with-jekyll.html</guid>
         
         
         <category>jekyll</category>

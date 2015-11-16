@@ -10,8 +10,8 @@
   <meta name="description" content="This tutorial is part of a series of tutorials on how to build, maintain and customize a Jekyll blog. If you haven’t read the previous ones, please go throug...">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://blog.unpixel.fr/jekyll/blog/github/2015/11/11/build-your-own-blog-with-jekyll.html">
-  <link rel="alternate" type="application/rss+xml" title="Blog • Un Pixel • EN" href="http://blog.unpixel.fr/feed.xml">
+  <link rel="canonical" href="http://theblog.unpixel.fr/jekyll/blog/github/2015/11/11/build-your-own-blog-with-jekyll.html">
+  <link rel="alternate" type="application/rss+xml" title="Blog • Un Pixel • EN" href="http://theblog.unpixel.fr/feed.xml">
 </head>
 
 
@@ -34,7 +34,7 @@
     <div class="single-post">
       <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <header class="post-header single-post-header" style="background-image:url('http://blog.unpixel.fr/img/9.jpg')">
+  <header class="post-header single-post-header" style="background-image:url('http://theblog.unpixel.fr/img/9.jpg')">
     <div>
       <h1 class="post-title single-post-title" itemprop="name headline">Build your own blog with Jekyll</h1>
       <p class="post-meta single-post-meta">
@@ -96,7 +96,7 @@
 
 <p>Now you can go to <a href="http://127.0.0.1:4000/">http://127.0.0.1:4000/</a> and see your blog in action!</p>
 
-<p><img src="http://blog.unpixel.fr/img/1.png" alt="Blog in action" /></p>
+<p><img src="http://theblog.unpixel.fr/img/1.png" alt="Blog in action" /></p>
 
 <p>Now we want to customize it. All the config informations are in the <code>_config.yml</code> file, located at the root of your folder. Let’s open it in our favorite editor and update it.</p>
 
@@ -113,7 +113,7 @@
 
 <p>Stop and relaunch your <code>jekyll serve</code> command and see the result!</p>
 
-<p><img src="http://blog.unpixel.fr/img/2.png" alt="Blog in action" /></p>
+<p><img src="http://theblog.unpixel.fr/img/2.png" alt="Blog in action" /></p>
 
 <p>That’s it for the first part! We’ll keep it simple for now and won’t customize the theme of our blog. But stay tuned, I’ll write another tutorial explaining how to do this soon ;)</p>
 
@@ -140,7 +140,7 @@
 
 <p>Now you can add a local image to your post like this <code>![image title]({{ site.url }}/img/image-name.jpg)</code></p>
 
-<p><img src="http://blog.unpixel.fr/img/2-1.png" alt="Blog in action" /></p>
+<p><img src="http://theblog.unpixel.fr/img/2-1.png" alt="Blog in action" /></p>
 
 <h1 id="hosting-our-blog-on-github">Hosting our blog on github</h1>
 
@@ -148,11 +148,11 @@
 
 <p>Go to your <a href="https://github.com">github</a> account and create a new repository.</p>
 
-<p><img src="http://blog.unpixel.fr/img/3.png" alt="New repository" /></p>
+<p><img src="http://theblog.unpixel.fr/img/3.png" alt="New repository" /></p>
 
 <p>Then copy the ssh url (or https if you prefer) of your new repository.</p>
 
-<p><img src="http://blog.unpixel.fr/img/4.png" alt="Copy url" /></p>
+<p><img src="http://theblog.unpixel.fr/img/4.png" alt="Copy url" /></p>
 
 <p>Now, open a terminal at the root of your blog project, go to the <code>_site</code> folder and create a new git repository.</p>
 
@@ -185,11 +185,11 @@
 
 <p>First, <a href="https://disqus.com/profile/signup/">create an account</a> and then <a href="http://disqus.com/register">register a new site</a>.</p>
 
-<p><img src="http://blog.unpixel.fr/img/5.png" alt="Register a new site" /></p>
+<p><img src="http://theblog.unpixel.fr/img/5.png" alt="Register a new site" /></p>
 
 <p>You should then be redirected on the installation page asking you to choose your platform. Choose Universal Code and copy the code of the first step.</p>
 
-<p><img src="http://blog.unpixel.fr/img/6.png" alt="Disqus installation" /></p>
+<p><img src="http://theblog.unpixel.fr/img/6.png" alt="Disqus installation" /></p>
 
 <p>Then we need to add this code to our post template file located at <code>_layouts/post.html</code>. Open this file and add at the end of the <code>&lt;article&gt;</code> block the copied code between <code>{% if page.comments %}</code> and <code>{% endif %}</code>.</p>
 
@@ -251,7 +251,7 @@ layout: default
 
 <p>Now we just have to add <code>comments: true</code> to the <a href="http://jekyllrb.com/docs/frontmatter/">front matter</a> of our post and the disqus comment section will load automatically.</p>
 
-<p><img src="http://blog.unpixel.fr/img/7.png" alt="Disqus comment section" /></p>
+<p><img src="http://theblog.unpixel.fr/img/7.png" alt="Disqus comment section" /></p>
 
 <p>Run <code>jekyll build</code>, commit the changes, and push the <code>_site</code> folder to github.</p>
 
@@ -267,7 +267,7 @@ layout: default
 
 <p>Now, go to your registrar and update the DNS records of your domain name. Create a <strong>CNAME record</strong> like this:</p>
 
-<p><img src="http://blog.unpixel.fr/img/8.png" alt="Create CNAME" /></p>
+<p><img src="http://theblog.unpixel.fr/img/8.png" alt="Create CNAME" /></p>
 
 <p>Wait a little and your subdomain should redirect to your blog. Don’t forget to update your site url in <code>_config.yml</code>.</p>
 
@@ -278,7 +278,7 @@ layout: default
     <div id="disqus_thread"></div>
     <script>
       var disqus_config = function() {
-        this.page.url = "http://blog.unpixel.fr/jekyll/blog/github/2015/11/11/build-your-own-blog-with-jekyll.html"; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.url = "http://theblog.unpixel.fr/jekyll/blog/github/2015/11/11/build-your-own-blog-with-jekyll.html"; // Replace PAGE_URL with your page's canonical URL variable
         this.page.identifier = "/jekyll/blog/github/2015/11/11/build-your-own-blog-with-jekyll"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
       };
       (function() { // DON'T EDIT BELOW THIS LINE
