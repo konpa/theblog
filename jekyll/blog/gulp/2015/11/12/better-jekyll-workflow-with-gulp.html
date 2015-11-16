@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>A better Jekyll workflow with Gulp</title>
+  <meta name="description" content="This tutorial is part of a series of tutorials on how to build, maintain and customize a Jekyll blog. If you haven’t read the previous ones, please go throug...">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://blog.unpixel.fr/jekyll/blog/gulp/2015/11/12/better-jekyll-workflow-with-gulp.html">
+  <link rel="alternate" type="application/rss+xml" title="Blog • Un Pixel • EN" href="http://blog.unpixel.fr/feed.xml">
+</head>
+
+
+  <body>
+
+    <nav class="single-post-nav">
+      <ul>
+        <li>
+          
+          <a href="/jekyll/blog/github/2015/11/11/build-your-own-blog-with-jekyll.html">&#8592; Previous post</a>
+          
+        </li>
+        <li><a href="/">Posts list</a></li>
+        <li>
+          
+          <a href="/jekyll/blog/sass/2015/11/13/customize-your-jekyll-blog-part-i.html">Next post &#8594;</a>
+          
+        </li>
+      </ul>
+    </nav>
+
+    <div class="single-post">
+      <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header single-post-header" style="background-image:url('http://blog.unpixel.fr/img/10.jpg')">
+    <div>
+      <h1 class="post-title single-post-title" itemprop="name headline">A better Jekyll workflow with Gulp</h1>
+      <p class="post-meta single-post-meta">
+        <time datetime="2015-11-12T09:00:00+01:00" itemprop="datePublished">12 November 2015</time>
+        •
+        
+        
+          10 mins
+        
+        read
+      </p>
+    </div>
+  </header>
+
+
+  <div class="wrapper">
+
+    <div class="single-post-summary">
+      In this tutorial we'll see how to maintain your Jekyll blog efficiently with gulp. I will explain how to reload your browser automatically each time you save changes, switch easily between local and production settings, magnify your images and deploy your blog updates easily.
+    </div>
+
+    <div class="post-content single-post-content" itemprop="articleBody">
+      <p>This tutorial is part of a series of tutorials on how to build, maintain and customize a Jekyll blog. If you haven’t read the previous ones, please go through them:</p>
+
+<ul>
+  <li><a href="/jekyll/blog/github/2015/11/11/build-your-own-blog-with-jekyll.html">Build your own blog with Jekyll</a></li>
+  <li>A better Jekyll workflow with gulp</li>
+  <li><a href="/jekyll/blog/sass/2015/11/13/customize-your-jekyll-blog-part-i.html">Customize your Jekyll blog - Part I</a></li>
+  <li><a href="/jekyll/blog/sass/2015/11/14/customize-your-jekyll-blog-part-ii.html">Customize your Jekyll blog - Part II</a></li>
+</ul>
+
+<h1 id="summary">Summary</h1>
+
+<p>In this tutorial we will see how to maintain your Jekyll blog efficiently with <a href="http://gulpjs.com/">glup</a>. I will explain how to:</p>
+
+<ul>
+  <li>reload your browser automatically each time you save changes</li>
+  <li>switch easily between local and production settings</li>
+  <li>magnify your images</li>
+  <li>deploy your blog updates easily</li>
+</ul>
+
+<p>You can view or download the source files on the <a href="https://github.com/konpa/jekyll-tutorial/tree/part-two">Jekyll tutorial github repo</a>.</p>
+
+<h1 id="automatic-browser-reload">Automatic browser reload</h1>
+
+<p>In this part, we are going to make gulp watch our files, and when a change is saved, reload our browser in order to see the result directly without to do it manually.</p>
+
+<p>For this, we will use a <code>gulpfile.js</code> found on <a href="https://github.com/shakyShane/jekyll-gulp-sass-browser-sync">github</a> and wrote by <a href="https://github.com/shakyShane">@shakyShane</a> as a base that I’ll change a little for our needs.</p>
+
+<p>Create a file called <code>package.json</code> like this:</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"browser-sync-jekyll"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A starter project including full setup for Jekyll, GulpJS, SASS &amp; BrowserSync"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gulpfile.js"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="s2">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shane Osbourne"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"license"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ISC"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"devDependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"gulp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^3.8.8"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"gulp-sass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^0.7.3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"browser-sync"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^1.3.7"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"gulp-autoprefixer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"repository"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"git"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/shakyShane/jekyll-gulp-sass-browser-sync.git"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"keywords"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"jekyll"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"gulp"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sass"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"browsersync"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"bugs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/shakyShane/jekyll-gulp-sass-browser-sync/issues"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"homepage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/shakyShane/jekyll-gulp-sass-browser-sync"</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>Then, create another file called <code>gulpfile.js</code> like this:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">gulp</span>        <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'gulp'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">browserSync</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'browser-sync'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">sass</span>        <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'gulp-sass'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">prefix</span>      <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'gulp-autoprefixer'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">cp</span>          <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'child_process'</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">messages</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">jekyllBuild</span><span class="p">:</span> <span class="s1">'&lt;span style="color: grey"&gt;Running:&lt;/span&gt; $ jekyll build'</span>
+<span class="p">};</span>
+
+<span class="cm">/**
+ * Build the Jekyll Site
+ */</span> 
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'jekyll-build'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">browserSync</span><span class="p">.</span><span class="nx">notify</span><span class="p">(</span><span class="nx">messages</span><span class="p">.</span><span class="nx">jekyllBuild</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">cp</span><span class="p">.</span><span class="nx">spawn</span><span class="p">(</span><span class="s1">'jekyll'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'build'</span><span class="p">],</span> <span class="p">{</span><span class="na">stdio</span><span class="p">:</span> <span class="s1">'inherit'</span><span class="p">})</span>
+        <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'close'</span><span class="p">,</span> <span class="nx">done</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="cm">/**
+ * Rebuild Jekyll &amp; do page reload
+ */</span> 
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'jekyll-rebuild'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'jekyll-build'</span><span class="p">],</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">browserSync</span><span class="p">.</span><span class="nx">reload</span><span class="p">();</span>
+<span class="p">});</span>
+
+<span class="cm">/**
+ * Wait for jekyll-build, then launch the Server
+ */</span> 
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'browser-sync'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'sass'</span><span class="p">,</span> <span class="s1">'jekyll-build'</span><span class="p">],</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">browserSync</span><span class="p">({</span>
+        <span class="na">server</span><span class="p">:</span> <span class="p">{</span>
+            <span class="na">baseDir</span><span class="p">:</span> <span class="s1">'_site'</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="cm">/**
+ * Compile files from _scss into both _site/css (for live injecting) and site (for future jekyll builds)
+ */</span> 
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'sass'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">gulp</span><span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="s1">'css/main.scss'</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">sass</span><span class="p">({</span>
+            <span class="na">includePaths</span><span class="p">:</span> <span class="p">[</span><span class="s1">'_sass'</span><span class="p">],</span>
+            <span class="na">onError</span><span class="p">:</span> <span class="nx">browserSync</span><span class="p">.</span><span class="nx">notify</span>
+        <span class="p">}))</span>
+        <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">prefix</span><span class="p">([</span><span class="s1">'last 15 versions'</span><span class="p">,</span> <span class="s1">'&gt; 1%'</span><span class="p">,</span> <span class="s1">'ie 8'</span><span class="p">,</span> <span class="s1">'ie 7'</span><span class="p">],</span> <span class="p">{</span> <span class="na">cascade</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}))</span>
+        <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">gulp</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="s1">'_site/css'</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">browserSync</span><span class="p">.</span><span class="nx">reload</span><span class="p">({</span><span class="na">stream</span><span class="p">:</span><span class="kc">true</span><span class="p">}))</span>
+        <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">gulp</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="s1">'css'</span><span class="p">));</span>
+<span class="p">});</span>
+
+<span class="cm">/**
+ * Watch scss files for changes &amp; recompile
+ * Watch html/md files, run jekyll &amp; reload BrowserSync
+ */</span> 
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'watch'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">gulp</span><span class="p">.</span><span class="nx">watch</span><span class="p">([</span><span class="s1">'_sass/*.scss'</span><span class="p">,</span> <span class="s1">'css/*.scss'</span><span class="p">],</span> <span class="p">[</span><span class="s1">'sass'</span><span class="p">]);</span>
+    <span class="nx">gulp</span><span class="p">.</span><span class="nx">watch</span><span class="p">([</span><span class="s1">'*.html'</span><span class="p">,</span> <span class="s1">'_layouts/*.html'</span><span class="p">,</span> <span class="s1">'_includes/*.html'</span><span class="p">,</span> <span class="s1">'_posts/*'</span><span class="p">,</span> <span class="s1">'_config.yml'</span><span class="p">],</span> <span class="p">[</span><span class="s1">'jekyll-rebuild'</span><span class="p">]);</span>
+<span class="p">});</span>
+
+<span class="cm">/**
+ * Default task, running just `gulp` will compile the sass,
+ * compile the jekyll site, launch BrowserSync &amp; watch files.
+ */</span> 
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'default'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'browser-sync'</span><span class="p">,</span> <span class="s1">'watch'</span><span class="p">]);</span></code></pre></figure>
+
+<p>Now, install the dependencies with:</p>
+
+<figure class="highlight"><pre><code class="language-console" data-lang="console">$ npm install</code></pre></figure>
+
+<p>You should now see a new folder called <code>node_modules</code>.</p>
+
+<p>Last step is to exclude this new files from the Jekyll build. So open your <code>_config.yml</code> file and add this line at the end:</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">exclude</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">node_modules"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">gulpfile.js"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">package.json"</span><span class="pi">]</span></code></pre></figure>
+
+<p>As we now user gulp-sass to generate our final css file, we’ll also need to remove those first 3 lines of our <code>css/main.scss</code> to prevent an error when compiling.</p>
+
+<figure class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="nt">---</span>
+<span class="nn">#</span> <span class="nt">Only</span> <span class="nt">the</span> <span class="nt">main</span> <span class="nt">Sass</span> <span class="nt">file</span> <span class="nt">needs</span> <span class="nt">front</span> <span class="nt">matter</span> <span class="o">(</span><span class="nt">the</span> <span class="nt">dashes</span> <span class="nt">are</span> <span class="nt">enough</span><span class="o">)</span>
+<span class="nt">---</span></code></pre></figure>
+
+<p>That’s it! You now just have to fire <code>gulp</code> in your terminal. A new tab will open automatically and will update automatically as well when you save changes in your files. Try it by making some changes to the <code>_sass/_base.scss</code> file or the <code>index.html</code> file.</p>
+
+<p><img src="http://blog.unpixel.fr/img/13.png" alt="Automatic reloading" /></p>
+
+<h1 id="switch-easily-between-local-and-production">Switch easily between local and production</h1>
+
+<p>When working locally on your computer, you need to set your <code>site.url</code> like <strong>http://localhost:3000</strong>. But before to deploy your blog on github you need to update the <code>site.url</code> with your production url like <strong>http://mydomain.com</strong>. This can become very annoying. So we’re going to fix this.</p>
+
+<p>Create a new file called <code>_config_dev.yml</code> at the root of your project with two lines:</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">baseurl</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+<span class="s">url</span><span class="pi">:</span> <span class="s2">"</span><span class="s">http://localhost:3000/"</span></code></pre></figure>
+
+<p>The two same lines in your <code>_config.yml</code> should be set with your production settings.</p>
+
+<p>Now, we will update our <code>gulpfile.js</code> so that Jekyll use our two config files. Open it and change the <code>jekyll-build</code> task like this:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="cm">/**
+ * Build the Jekyll Site
+ */</span> 
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'jekyll-build'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">browserSync</span><span class="p">.</span><span class="nx">notify</span><span class="p">(</span><span class="nx">messages</span><span class="p">.</span><span class="nx">jekyllBuild</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">cp</span><span class="p">.</span><span class="nx">spawn</span><span class="p">(</span><span class="s1">'jekyll'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'build'</span><span class="p">,</span> <span class="s1">'--config'</span><span class="p">,</span> <span class="s1">'_config.yml,_config_dev.yml'</span><span class="p">],</span> <span class="p">{</span><span class="na">stdio</span><span class="p">:</span> <span class="s1">'inherit'</span><span class="p">})</span>
+        <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'close'</span><span class="p">,</span> <span class="nx">done</span><span class="p">);</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>Done! Now you won’t have to bother anymore switching manually between local and production url.</p>
+
+<h1 id="images-magnification">Images magnification</h1>
+
+<p>To magnify our images we will use the <a href="https://github.com/sindresorhus/gulp-imagemin">gulp-imagemin</a> plugin made by <a href="https://github.com/sindresorhus">@sindresorhus</a>.</p>
+
+<p>First we have to install the plugin.</p>
+
+<figure class="highlight"><pre><code class="language-console" data-lang="console">$ npm install --save-dev gulp-imagemin
+$ npm install --save-dev imagemin-pngquant</code></pre></figure>
+
+<p>Then, add those lines to your <code>gulpfile.js</code>:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">imagemin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'gulp-imagemin'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">pngquant</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'imagemin-pngquant'</span><span class="p">);</span>
+
+<span class="cm">/**
+ * Image magnification
+ */</span> 
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'image-magnification'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">gulp</span><span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="s1">'./_images/*'</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">imagemin</span><span class="p">({</span>
+            <span class="na">progressive</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="na">svgoPlugins</span><span class="p">:</span> <span class="p">[{</span><span class="na">removeViewBox</span><span class="p">:</span> <span class="kc">false</span><span class="p">}],</span>
+            <span class="na">use</span><span class="p">:</span> <span class="p">[</span><span class="nx">pngquant</span><span class="p">()]</span>
+        <span class="p">}))</span>
+        <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">gulp</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="s1">'./img/'</span><span class="p">));</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>Now update the <code>jekyll-build</code> task so it launches the <code>image-magnification</code> task before.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="cm">/**
+ * Build the Jekyll Site
+ */</span> 
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'jekyll-build'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'image-magnification'</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">browserSync</span><span class="p">.</span><span class="nx">notify</span><span class="p">(</span><span class="nx">messages</span><span class="p">.</span><span class="nx">jekyllBuild</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">cp</span><span class="p">.</span><span class="nx">spawn</span><span class="p">(</span><span class="s1">'jekyll'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'build'</span><span class="p">,</span> <span class="s1">'--config'</span><span class="p">,</span> <span class="s1">'_config.yml,_config_dev.yml'</span><span class="p">],</span> <span class="p">{</span><span class="na">stdio</span><span class="p">:</span> <span class="s1">'inherit'</span><span class="p">})</span>
+        <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'close'</span><span class="p">,</span> <span class="nx">done</span><span class="p">);</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>Create an <code>_images</code> folder where you will store your new un-magnified images. Don’t put them anymore on the <code>img</code> folder, it is now only a transition folder.</p>
+
+<p>Finally, update your gulp watch task so that it watches your <code>_images</code> folder.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="cm">/**
+ * Watch scss files for changes &amp; recompile
+ * Watch html/md files, run jekyll &amp; reload BrowserSync
+ */</span> 
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'watch'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">gulp</span><span class="p">.</span><span class="nx">watch</span><span class="p">(</span><span class="s1">'_sass/*.scss'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'sass'</span><span class="p">]);</span>
+    <span class="nx">gulp</span><span class="p">.</span><span class="nx">watch</span><span class="p">([</span><span class="s1">'*.html'</span><span class="p">,</span> <span class="s1">'_layouts/*.html'</span><span class="p">,</span> <span class="s1">'_includes/*.html'</span><span class="p">,</span> <span class="s1">'_posts/*'</span><span class="p">,</span> <span class="s1">'_config.yml'</span><span class="p">,</span> <span class="s1">'_images/*'</span><span class="p">],</span> <span class="p">[</span><span class="s1">'jekyll-rebuild'</span><span class="p">]);</span>
+<span class="p">});</span></code></pre></figure>
+
+<h1 id="deploy-on-github">Deploy on github</h1>
+
+<p>To automate our github deploy, we will use the <a href="https://github.com/sun-zheng-an/gulp-shell">gulp-shell</a> plugin made by <a href="https://github.com/sun-zheng-an">@sun-zheng-an</a>.</p>
+
+<p>First, install the plugin.</p>
+
+<figure class="highlight"><pre><code class="language-console" data-lang="console">$ npm install --save-dev gulp-shell</code></pre></figure>
+
+<p>And add those lines to your <code>gulpfile.js</code>:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">shell</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'gulp-shell'</span><span class="p">);</span>
+
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'deploy'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'jekyll-build-prod'</span><span class="p">],</span> <span class="nx">shell</span><span class="p">.</span><span class="nx">task</span><span class="p">([</span>
+  <span class="s1">'cd _site/ &amp;&amp; git add --all &amp;&amp; git commit -m "update blog" &amp;&amp; git push origin gh-pages'</span>
+<span class="p">]));</span></code></pre></figure>
+
+<p>Because we added our <code>_config_dev.yml</code> file to the Jekyll build task, we also have to add a task for building our production blog without this file.</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="cm">/**
+ * Build the Jekyll Site for production
+ */</span> 
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'jekyll-build-prod'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'image-magnification'</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">browserSync</span><span class="p">.</span><span class="nx">notify</span><span class="p">(</span><span class="nx">messages</span><span class="p">.</span><span class="nx">jekyllBuild</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">cp</span><span class="p">.</span><span class="nx">spawn</span><span class="p">(</span><span class="s1">'jekyll'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'build'</span><span class="p">],</span> <span class="p">{</span><span class="na">stdio</span><span class="p">:</span> <span class="s1">'inherit'</span><span class="p">})</span>
+        <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'close'</span><span class="p">,</span> <span class="nx">done</span><span class="p">);</span>
+<span class="p">});</span></code></pre></figure>
+
+<p>Now, you just have to fire <code>gulp deploy</code> on your terminal to update your blog.</p>
+
+<p>That’s it for this tutorial. Stay tuned for next one.</p>
+
+
+    </div>
+
+    
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function() {
+        this.page.url = "http://blog.unpixel.fr/jekyll/blog/gulp/2015/11/12/better-jekyll-workflow-with-gulp.html"; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "/jekyll/blog/gulp/2015/11/12/better-jekyll-workflow-with-gulp"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+          s = d.createElement('script');
+
+        s.src = '//unpixel.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+    </noscript>
+    
+
+  </div>
+
+</article>
+
+    </div>
+
+    <footer class="site-footer">
+  <div class="wrapper">
+    <ul class="social-media-list">
+      
+      <li>
+        <a href="https://github.com/konpa"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span></a>
+
+      </li>
+      
+      
+      <li>
+        <a href="https://twitter.com/1_pxl"><span class="icon icon--twitter"><svg viewBox="0 0 16 16"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span></a>
+
+      </li>
+      
+    </ul>
+  </div>
+</footer>
+
+
+  </body>
+
+</html>
