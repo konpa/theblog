@@ -10,8 +10,8 @@
   <meta name="description" content="This tutorial is part of a series of tutorials on how to build, maintain and customize a Jekyll blog. If you haven’t read the previous ones, please go throug...">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://theblog.unpixel.fr/jekyll/blog/gulp/2015/11/12/better-jekyll-workflow-with-gulp.html">
-  <link rel="alternate" type="application/rss+xml" title="Blog • Un Pixel • EN" href="http://theblog.unpixel.fr/feed.xml">
+  <link rel="canonical" href="http://theblog.unpixel.fr/2015-11-better-jekyll-workflow-with-gulp/">
+  <link rel="alternate" type="application/rss+xml" title="Blog • Un Pixel" href="http://theblog.unpixel.fr/feed.xml">
 </head>
 
 
@@ -21,13 +21,13 @@
       <ul>
         <li>
           
-          <a href="/jekyll/blog/github/2015/11/11/build-your-own-blog-with-jekyll.html">&#8592; Previous post</a>
+          <a href="/2015-11-build-your-own-blog-with-jekyll/">&#8592; Previous post</a>
           
         </li>
         <li><a href="/">Posts list</a></li>
         <li>
           
-          <a href="/jekyll/blog/sass/2015/11/13/customize-your-jekyll-blog-part-i.html">Next post &#8594;</a>
+          <a href="/2015-11-customize-your-jekyll-blog-part-i/">Next post &#8594;</a>
           
         </li>
       </ul>
@@ -54,18 +54,24 @@
 
   <div class="wrapper">
 
+    <div class="single-post-lang">
+      <span>en</span>
+      |
+      <a href="http://leblog.unpixel.fr/2015-11-12-maintenir-son-blog-jekyll-efficacement-avec-gulp/">fr</a>
+    </div>
+
     <div class="single-post-summary">
-      In this tutorial we'll see how to maintain your Jekyll blog efficiently with gulp. I will explain how to reload your browser automatically each time you save changes, switch easily between local and production settings, magnify your images and deploy your blog updates easily.
+      In this tutorial we'll see how to maintain your Jekyll blog efficiently with gulp. I will explain how to reload your browser automatically each time you save changes, switch easily between local and production settings, minify your images and deploy your blog updates easily.
     </div>
 
     <div class="post-content single-post-content" itemprop="articleBody">
       <p>This tutorial is part of a series of tutorials on how to build, maintain and customize a Jekyll blog. If you haven’t read the previous ones, please go through them:</p>
 
 <ul>
-  <li><a href="/jekyll/blog/github/2015/11/11/build-your-own-blog-with-jekyll.html">Build your own blog with Jekyll</a></li>
+  <li><a href="/2015-11-build-your-own-blog-with-jekyll/">Build your own blog with Jekyll</a></li>
   <li>A better Jekyll workflow with gulp</li>
-  <li><a href="/jekyll/blog/sass/2015/11/13/customize-your-jekyll-blog-part-i.html">Customize your Jekyll blog - Part I</a></li>
-  <li><a href="/jekyll/blog/sass/2015/11/14/customize-your-jekyll-blog-part-ii.html">Customize your Jekyll blog - Part II</a></li>
+  <li><a href="/2015-11-customize-your-jekyll-blog-part-i/">Customize your Jekyll blog - Part I</a></li>
+  <li><a href="/2015-11-customize-your-jekyll-blog-part-ii/">Customize your Jekyll blog - Part II</a></li>
 </ul>
 
 <h1 id="summary">Summary</h1>
@@ -75,7 +81,7 @@
 <ul>
   <li>reload your browser automatically each time you save changes</li>
   <li>switch easily between local and production settings</li>
-  <li>magnify your images</li>
+  <li>minify your images</li>
   <li>deploy your blog updates easily</li>
 </ul>
 
@@ -234,9 +240,9 @@
 
 <p>Done! Now you won’t have to bother anymore switching manually between local and production url.</p>
 
-<h1 id="images-magnification">Images magnification</h1>
+<h1 id="minify-your-images">Minify your images</h1>
 
-<p>To magnify our images we will use the <a href="https://github.com/sindresorhus/gulp-imagemin">gulp-imagemin</a> plugin made by <a href="https://github.com/sindresorhus">@sindresorhus</a>.</p>
+<p>To minify our images we will use the <a href="https://github.com/sindresorhus/gulp-imagemin">gulp-imagemin</a> plugin made by <a href="https://github.com/sindresorhus">@sindresorhus</a>.</p>
 
 <p>First we have to install the plugin.</p>
 
@@ -249,9 +255,9 @@ $ npm install --save-dev imagemin-pngquant</code></pre></figure>
 <span class="kd">var</span> <span class="nx">pngquant</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'imagemin-pngquant'</span><span class="p">);</span>
 
 <span class="cm">/**
- * Image magnification
+ * Minify images
  */</span> 
-<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'image-magnification'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'minify-images'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">gulp</span><span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="s1">'./_images/*'</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">imagemin</span><span class="p">({</span>
             <span class="na">progressive</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
@@ -261,18 +267,18 @@ $ npm install --save-dev imagemin-pngquant</code></pre></figure>
         <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">gulp</span><span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="s1">'./img/'</span><span class="p">));</span>
 <span class="p">});</span></code></pre></figure>
 
-<p>Now update the <code>jekyll-build</code> task so it launches the <code>image-magnification</code> task before.</p>
+<p>Now update the <code>jekyll-build</code> task so it launches the <code>minify-images</code> task before.</p>
 
 <figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="cm">/**
  * Build the Jekyll Site
  */</span> 
-<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'jekyll-build'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'image-magnification'</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'jekyll-build'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'minify-images'</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">browserSync</span><span class="p">.</span><span class="nx">notify</span><span class="p">(</span><span class="nx">messages</span><span class="p">.</span><span class="nx">jekyllBuild</span><span class="p">);</span>
     <span class="k">return</span> <span class="nx">cp</span><span class="p">.</span><span class="nx">spawn</span><span class="p">(</span><span class="s1">'jekyll'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'build'</span><span class="p">,</span> <span class="s1">'--config'</span><span class="p">,</span> <span class="s1">'_config.yml,_config_dev.yml'</span><span class="p">],</span> <span class="p">{</span><span class="na">stdio</span><span class="p">:</span> <span class="s1">'inherit'</span><span class="p">})</span>
         <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'close'</span><span class="p">,</span> <span class="nx">done</span><span class="p">);</span>
 <span class="p">});</span></code></pre></figure>
 
-<p>Create an <code>_images</code> folder where you will store your new un-magnified images. Don’t put them anymore on the <code>img</code> folder, it is now only a transition folder.</p>
+<p>Create an <code>_images</code> folder where you will store your new un-minified images. Don’t put them anymore on the <code>img</code> folder, it is now only a transition folder.</p>
 
 <p>Finally, update your gulp watch task so that it watches your <code>_images</code> folder.</p>
 
@@ -306,7 +312,7 @@ $ npm install --save-dev imagemin-pngquant</code></pre></figure>
 <figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="cm">/**
  * Build the Jekyll Site for production
  */</span> 
-<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'jekyll-build-prod'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'image-magnification'</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'jekyll-build-prod'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'minify-images'</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">browserSync</span><span class="p">.</span><span class="nx">notify</span><span class="p">(</span><span class="nx">messages</span><span class="p">.</span><span class="nx">jekyllBuild</span><span class="p">);</span>
     <span class="k">return</span> <span class="nx">cp</span><span class="p">.</span><span class="nx">spawn</span><span class="p">(</span><span class="s1">'jekyll'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'build'</span><span class="p">],</span> <span class="p">{</span><span class="na">stdio</span><span class="p">:</span> <span class="s1">'inherit'</span><span class="p">})</span>
         <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'close'</span><span class="p">,</span> <span class="nx">done</span><span class="p">);</span>
@@ -323,8 +329,8 @@ $ npm install --save-dev imagemin-pngquant</code></pre></figure>
     <div id="disqus_thread"></div>
     <script>
       var disqus_config = function() {
-        this.page.url = "http://theblog.unpixel.fr/jekyll/blog/gulp/2015/11/12/better-jekyll-workflow-with-gulp.html"; // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "/jekyll/blog/gulp/2015/11/12/better-jekyll-workflow-with-gulp"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "http://theblog.unpixel.fr/2015-11-better-jekyll-workflow-with-gulp/"; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "/better-jekyll-workflow-with-gulp"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
       };
       (function() { // DON'T EDIT BELOW THIS LINE
         var d = document,

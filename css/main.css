@@ -532,6 +532,14 @@ h1, h2, h3, h4, h5, h6 {
 /*
   Header
 */
+.site-lang {
+  margin-top: 5px;
+  text-align: center; }
+  .site-lang span {
+    font-weight: 700; }
+  .site-lang a {
+    color: inherit; }
+
 .site-header {
   border: 0; }
   .site-header .wrapper {
@@ -767,6 +775,13 @@ h1, h2, h3, h4, h5, h6 {
   @media screen and (max-width: 600px) {
     .single-post-meta {
       font-size: 16px; } }
+
+.single-post-lang {
+  text-align: center; }
+  .single-post-lang span {
+    font-weight: 700; }
+  .single-post-lang a {
+    color: inherit; }
 
 .single-post-summary {
   margin: 60px 0;
