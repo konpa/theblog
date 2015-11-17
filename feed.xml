@@ -5,8 +5,8 @@
     <description></description>
     <link>http://theblog.unpixel.fr/</link>
     <atom:link href="http://theblog.unpixel.fr/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 17 Nov 2015 09:59:15 +0100</pubDate>
-    <lastBuildDate>Tue, 17 Nov 2015 09:59:15 +0100</lastBuildDate>
+    <pubDate>Tue, 17 Nov 2015 10:12:17 +0100</pubDate>
+    <lastBuildDate>Tue, 17 Nov 2015 10:12:17 +0100</lastBuildDate>
     <generator>Jekyll v3.0.0</generator>
     
       <item>
@@ -14,9 +14,9 @@
         <description>&lt;p&gt;This tutorial is part of a series of tutorials on how to build, maintain and customize a Jekyll blog. If you haven’t read the previous ones, please go through them:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;/2015-11-build-your-own-blog-with-jekyll/&quot;&gt;Build your own blog with Jekyll&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;/2015-11-better-jekyll-workflow-with-gulp/&quot;&gt;A better Jekyll workflow with gulp&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;/2015-11-customize-your-jekyll-blog-part-i/&quot;&gt;Customize your Jekyll blog - Part I&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2015-11-11-build-your-own-blog-with-jekyll/&quot;&gt;Build your own blog with Jekyll&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2015-11-12-better-jekyll-workflow-with-gulp/&quot;&gt;A better Jekyll workflow with gulp&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2015-11-13-customize-your-jekyll-blog-part-i/&quot;&gt;Customize your Jekyll blog - Part I&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;Customize your Jekyll blog - Part II&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -279,8 +279,8 @@ layout: default_post
 
 </description>
         <pubDate>Sat, 14 Nov 2015 09:00:00 +0100</pubDate>
-        <link>http://theblog.unpixel.fr/2015-11-customize-your-jekyll-blog-part-ii/</link>
-        <guid isPermaLink="true">http://theblog.unpixel.fr/2015-11-customize-your-jekyll-blog-part-ii/</guid>
+        <link>http://theblog.unpixel.fr/2015-11-14-customize-your-jekyll-blog-part-ii/</link>
+        <guid isPermaLink="true">http://theblog.unpixel.fr/2015-11-14-customize-your-jekyll-blog-part-ii/</guid>
         
         
         <category>jekyll</category>
@@ -296,10 +296,10 @@ layout: default_post
         <description>&lt;p&gt;This tutorial is part of a series of tutorials on how to build, maintain and customize a Jekyll blog. If you haven’t read the previous ones, please go through them:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;/2015-11-build-your-own-blog-with-jekyll/&quot;&gt;Build your own blog with Jekyll&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;/2015-11-better-jekyll-workflow-with-gulp/&quot;&gt;A better Jekyll workflow with gulp&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2015-11-11-build-your-own-blog-with-jekyll/&quot;&gt;Build your own blog with Jekyll&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2015-11-12-better-jekyll-workflow-with-gulp/&quot;&gt;A better Jekyll workflow with gulp&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;Customize your Jekyll blog - Part I&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;/2015-11-customize-your-jekyll-blog-part-ii/&quot;&gt;Customize your Jekyll blog - Part II&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2015-11-14-customize-your-jekyll-blog-part-ii/&quot;&gt;Customize your Jekyll blog - Part II&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;You can view or download the source files on the &lt;a href=&quot;https://github.com/konpa/jekyll-tutorial/tree/part-three&quot;&gt;Jekyll tutorial github repo&lt;/a&gt;.&lt;/p&gt;
@@ -628,8 +628,8 @@ layout: default
 
 </description>
         <pubDate>Fri, 13 Nov 2015 09:00:00 +0100</pubDate>
-        <link>http://theblog.unpixel.fr/2015-11-customize-your-jekyll-blog-part-i/</link>
-        <guid isPermaLink="true">http://theblog.unpixel.fr/2015-11-customize-your-jekyll-blog-part-i/</guid>
+        <link>http://theblog.unpixel.fr/2015-11-13-customize-your-jekyll-blog-part-i/</link>
+        <guid isPermaLink="true">http://theblog.unpixel.fr/2015-11-13-customize-your-jekyll-blog-part-i/</guid>
         
         
         <category>jekyll</category>
@@ -645,10 +645,10 @@ layout: default
         <description>&lt;p&gt;This tutorial is part of a series of tutorials on how to build, maintain and customize a Jekyll blog. If you haven’t read the previous ones, please go through them:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;/2015-11-build-your-own-blog-with-jekyll/&quot;&gt;Build your own blog with Jekyll&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2015-11-11-build-your-own-blog-with-jekyll/&quot;&gt;Build your own blog with Jekyll&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;A better Jekyll workflow with gulp&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;/2015-11-customize-your-jekyll-blog-part-i/&quot;&gt;Customize your Jekyll blog - Part I&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;/2015-11-customize-your-jekyll-blog-part-ii/&quot;&gt;Customize your Jekyll blog - Part II&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2015-11-13-customize-your-jekyll-blog-part-i/&quot;&gt;Customize your Jekyll blog - Part I&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2015-11-14-customize-your-jekyll-blog-part-ii/&quot;&gt;Customize your Jekyll blog - Part II&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&quot;summary&quot;&gt;Summary&lt;/h1&gt;
@@ -901,8 +901,8 @@ $ npm install --save-dev imagemin-pngquant&lt;/code&gt;&lt;/pre&gt;&lt;/figure&g
 
 </description>
         <pubDate>Thu, 12 Nov 2015 09:00:00 +0100</pubDate>
-        <link>http://theblog.unpixel.fr/2015-11-better-jekyll-workflow-with-gulp/</link>
-        <guid isPermaLink="true">http://theblog.unpixel.fr/2015-11-better-jekyll-workflow-with-gulp/</guid>
+        <link>http://theblog.unpixel.fr/2015-11-12-better-jekyll-workflow-with-gulp/</link>
+        <guid isPermaLink="true">http://theblog.unpixel.fr/2015-11-12-better-jekyll-workflow-with-gulp/</guid>
         
         
         <category>jekyll</category>
@@ -919,9 +919,9 @@ $ npm install --save-dev imagemin-pngquant&lt;/code&gt;&lt;/pre&gt;&lt;/figure&g
 
 &lt;ul&gt;
   &lt;li&gt;Build your own blog with Jekyll&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;/2015-11-better-jekyll-workflow-with-gulp/&quot;&gt;A better Jekyll workflow with gulp&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;/2015-11-customize-your-jekyll-blog-part-i/&quot;&gt;Customize your Jekyll blog - Part I&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;/2015-11-customize-your-jekyll-blog-part-ii/&quot;&gt;Customize your Jekyll blog - Part II&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2015-11-12-better-jekyll-workflow-with-gulp/&quot;&gt;A better Jekyll workflow with gulp&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2015-11-13-customize-your-jekyll-blog-part-i/&quot;&gt;Customize your Jekyll blog - Part I&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/2015-11-14-customize-your-jekyll-blog-part-ii/&quot;&gt;Customize your Jekyll blog - Part II&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&quot;summary&quot;&gt;Summary&lt;/h1&gt;
@@ -1131,8 +1131,8 @@ layout: default
 
 </description>
         <pubDate>Wed, 11 Nov 2015 09:00:00 +0100</pubDate>
-        <link>http://theblog.unpixel.fr/2015-11-build-your-own-blog-with-jekyll/</link>
-        <guid isPermaLink="true">http://theblog.unpixel.fr/2015-11-build-your-own-blog-with-jekyll/</guid>
+        <link>http://theblog.unpixel.fr/2015-11-11-build-your-own-blog-with-jekyll/</link>
+        <guid isPermaLink="true">http://theblog.unpixel.fr/2015-11-11-build-your-own-blog-with-jekyll/</guid>
         
         
         <category>jekyll</category>
