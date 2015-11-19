@@ -5,8 +5,8 @@
     <description></description>
     <link>http://theblog.unpixel.fr/</link>
     <atom:link href="http://theblog.unpixel.fr/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 17 Nov 2015 10:15:35 +0100</pubDate>
-    <lastBuildDate>Tue, 17 Nov 2015 10:15:35 +0100</lastBuildDate>
+    <pubDate>Thu, 19 Nov 2015 11:15:46 +0100</pubDate>
+    <lastBuildDate>Thu, 19 Nov 2015 11:15:46 +0100</lastBuildDate>
     <generator>Jekyll v3.0.0</generator>
     
       <item>
@@ -932,7 +932,7 @@ $ npm install --save-dev imagemin-pngquant&lt;/code&gt;&lt;/pre&gt;&lt;/figure&g
   &lt;li&gt;build a blog with &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt;,&lt;/li&gt;
   &lt;li&gt;write our first blog post,&lt;/li&gt;
   &lt;li&gt;add &lt;a href=&quot;https://disqus.com/&quot;&gt;disqus&lt;/a&gt; to our post,&lt;/li&gt;
-  &lt;li&gt;and finally, host it for free on github.&lt;/li&gt;
+  &lt;li&gt;and finally, host it for free on &lt;a href=&quot;https://github.com&quot;&gt;Github&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;You can view or download the source files on the &lt;a href=&quot;https://github.com/konpa/jekyll-tutorial/tree/part-one&quot;&gt;Jekyll tutorial github repo&lt;/a&gt;.&lt;/p&gt;
