@@ -5,8 +5,8 @@
     <description></description>
     <link>http://theblog.unpixel.fr/</link>
     <atom:link href="http://theblog.unpixel.fr/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 09 Dec 2015 11:55:53 +0100</pubDate>
-    <lastBuildDate>Wed, 09 Dec 2015 11:55:53 +0100</lastBuildDate>
+    <pubDate>Wed, 09 Dec 2015 11:58:48 +0100</pubDate>
+    <lastBuildDate>Wed, 09 Dec 2015 11:58:48 +0100</lastBuildDate>
     <generator>Jekyll v3.0.0</generator>
     
       <item>
@@ -258,9 +258,9 @@ Password:&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 &lt;p&gt;That’s it for this tutorial. Stay tuned for next one.&lt;/p&gt;
 
 </description>
-        <pubDate>Fri, 27 Nov 2015 09:00:00 +0100</pubDate>
-        <link>http://theblog.unpixel.fr/2015-11-27-continuous-delivery-with-travis-and-heroku/</link>
-        <guid isPermaLink="true">http://theblog.unpixel.fr/2015-11-27-continuous-delivery-with-travis-and-heroku/</guid>
+        <pubDate>Wed, 09 Dec 2015 09:00:00 +0100</pubDate>
+        <link>http://theblog.unpixel.fr/2015-12-09-continuous-delivery-with-travis-and-heroku/</link>
+        <guid isPermaLink="true">http://theblog.unpixel.fr/2015-12-09-continuous-delivery-with-travis-and-heroku/</guid>
         
         
         <category>continuous</category>
