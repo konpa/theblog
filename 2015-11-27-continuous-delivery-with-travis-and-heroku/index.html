@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Continuous delivery with Travis and Heroku</title>
+  <meta name="description" content="Set up the rails project">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://theblog.unpixel.fr/2015-11-27-continuous-delivery-with-travis-and-heroku/">
+  <link rel="alternate" type="application/rss+xml" title="Blog • Un Pixel" href="http://theblog.unpixel.fr/feed.xml">
+</head>
+
+
+  <body>
+
+    <nav class="single-post-nav">
+      <ul>
+        <li>
+          
+          <a href="/2015-11-22-customize-your-jekyll-blog-part-ii/">&#8592; Previous post</a>
+          
+        </li>
+        <li><a href="/">Posts list</a></li>
+        <li>
+          
+        </li>
+      </ul>
+    </nav>
+
+    <div class="single-post">
+      <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header single-post-header" style="background-image:url('http://theblog.unpixel.fr/img/31.jpg')">
+    <div>
+      <h1 class="post-title single-post-title" itemprop="name headline">Continuous delivery with Travis and Heroku</h1>
+      <p class="post-meta single-post-meta">
+        <time datetime="2015-11-27T09:00:00+01:00" itemprop="datePublished">27 November 2015</time>
+        •
+        
+        
+          7 mins
+        
+        read
+      </p>
+    </div>
+  </header>
+
+
+  <div class="wrapper">
+
+    <div class="single-post-lang">
+      <span>en</span>
+      |
+      <a href="http://leblog.unpixel.fr/2015-11-27-integration-et-deploiement-continu-avec-travis-et-heroku/">fr</a>
+    </div>
+
+    <div class="single-post-summary">
+      We'll see how to automate our tests and the deployment of our application with Travis CI and Heroku in order to ease the process to send our code into production.
+    </div>
+
+    <div class="post-content single-post-content" itemprop="articleBody">
+      <h1 id="set-up-the-rails-project">Set up the rails project</h1>
+
+<p>Let’s begin by creating a really simple Rails project that we’ll use as example in our continuous delivery with <a href="https://travis-ci.org/">TravisCI</a> and <a href="https://www.heroku.com/">Heroku</a>.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">~$ </span>rails new rails-project
+<span class="gp">~$ </span><span class="nb">cd </span>rails-project
+<span class="gp">~/rails-project$ </span>rails server</code></pre></figure>
+
+<p>We’ll create a new controller named <code>welcome</code> (because we are super original).</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">~/rails-project$ </span>rails generate controller welcome</code></pre></figure>
+
+<p>And we’ll add a new file called <code>index.html.erb</code> in <code>app/view/welcome</code>.</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;h1&gt;</span>Welcome to my Rails website!<span class="nt">&lt;/h1&gt;</span></code></pre></figure>
+
+<p>Finally, we’ll add a new route in our <code>config/routes.rb</code> file.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">root</span> <span class="s1">'welcome#index'</span></code></pre></figure>
+
+<p>We’ll launch our rails server and see the result at <a href="http://localhost:3000">http://localhost:3000</a>.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">~/rails-project$ </span>rails server</code></pre></figure>
+
+<p><img src="http://theblog.unpixel.fr/img/20.png" alt="site Rails" /></p>
+
+<p>Great! One of my best creations!</p>
+
+<h1 id="git-hosting-on-github">Git hosting on Github</h1>
+
+<p>We are going to host our git repo on <a href="https://github.com/">Github</a> public repo because <a href="https://travis-ci.org/">Travis CI</a> is free for open source projects. If you want to use <a href="https://travis-ci.org/">Travis CI</a> with a private repo, it’ll cost you 129$ per month with the first plan.</p>
+
+<p>Let’s initialize our git repo.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">~/rails-project$ </span>git init
+<span class="gp">~/rails-project$ </span>git add --all
+<span class="gp">~/rails-project$ </span>git commit -m <span class="s2">"project set up"</span></code></pre></figure>
+
+<p>And we’ll create our public repo on <a href="https://github.com/">Github</a>.</p>
+
+<p><img src="http://theblog.unpixel.fr/img/21.png" alt="new github repo" /></p>
+
+<p>Now, we’re going to link our new Github repo to our local repo and we’ll push it.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">~/rails-project$ </span>git remote add origin git@github.com:pseudo/nom-du-depot.git
+<span class="gp">~/rails-project$ </span>git push origin master</code></pre></figure>
+
+<h1 id="testing-with-travis-ci">Testing with Travis CI</h1>
+
+<p>Let’s begin by creating an account on <a href="https://travis-ci.org/">Travis CI</a> that we’ll link to our github repo.</p>
+
+<p><img src="http://theblog.unpixel.fr/img/22.png" alt="Lier le dépôt" /></p>
+
+<p>On the Travis CI project page, we can see that no test has been executed because our project has not been configured for Travis yet.</p>
+
+<p><img src="http://theblog.unpixel.fr/img/23.png" alt="Page test" /></p>
+
+<p>So, we’ll create a <code>.travis.yml</code> file on the root of our project folder that will contain all our Travis tests configurations.</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">language</span><span class="pi">:</span> <span class="s">ruby</span>
+<span class="s">rvm</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">2.2.3</span></code></pre></figure>
+
+<p>Here, we ask Travis to test our project with the <code>2.2.3</code> version of ruby. If you need to test more versions, feel free to add more to the list.</p>
+
+<p>Now, we’ll add our changes with a git commit and push it to github.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">~/rails-project$ </span>git add --all
+<span class="gp">~/rails-project$ </span>git commit -m <span class="s2">"travis configuration"</span>
+<span class="gp">~/rails-project$ </span>git push origin master</code></pre></figure>
+
+<p>Travis CI will detect our new github commit and launch the tests following the configurations in our new <code>.travis.yml</code> file.</p>
+
+<p><img src="http://theblog.unpixel.fr/img/24.png" alt="Test in progress" /></p>
+
+<p>If all tests pass, our project become green. No surprise here because our project is really simple and it contains no test.</p>
+
+<p><img src="http://theblog.unpixel.fr/img/25.png" alt="Back to green!" /></p>
+
+<p>Let’s try to add a test in our <code>test/controllers/welcome_controller_test.rb</code> file that will fail to see what will happen.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'test_helper'</span>
+
+<span class="k">class</span> <span class="nc">WelcomeControllerTest</span> <span class="o">&lt;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">TestCase</span>
+  <span class="nb">test</span> <span class="s2">"the truth"</span> <span class="k">do</span>
+    <span class="n">assert</span> <span class="kp">false</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>Commit the changes and push it to github.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">~/rails-project$ </span>git add --all
+<span class="gp">~/rails-project$ </span>git commit -m <span class="s2">"ajout d'un test"</span>
+<span class="gp">~/rails-project$ </span>git push origin master</code></pre></figure>
+
+<p>Our project is turning red on Travis after our test failed.</p>
+
+<p><img src="http://theblog.unpixel.fr/img/26.png" alt="Tests failed!" /></p>
+
+<p>Now that you understood how it works, I let you do the necessary to go back to green :)</p>
+
+<h1 id="deploy-on-heroku">Deploy on Heroku</h1>
+
+<p>In this part, we’ll deploy our website in production on Heroku and, then, link Travis CI with Heroku in order to automate our deployment if all the tests pass.</p>
+
+<p>Let’s begin by create an Heroku account. Then, we’ll need to install the <a href="https://toolbelt.heroku.com/">Heroku Toolbelt</a> on our computer and launch the <code>heroku login</code> command in order to link it to our new Heroku account.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">~/rails-project$ </span>heroku login
+Enter your Heroku credentials.
+Email: ruby@example.com
+Password:</code></pre></figure>
+
+<p>Before to deploy our application to Heroku, we’ll have to make some change to make it compatible with the Heroku servers and deployment process.</p>
+
+<p>We’ll need to switch to a <a href="http://www.postgresql.org/">postgreSQL</a> database.</p>
+
+<p>We’ll replace the <code>sqlite3</code> gem with the <code>pg</code> gem in our <code>Gemfile</code>. Then we’ll add the <code>rails_12factor</code> gem and specify the ruby version that we use with our application at the end.</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">source 'https://rubygems.org'</span>
+
+<span class="s">gem 'rails', '4.2.4'</span>
+<span class="s">gem 'pg'</span>
+<span class="s">gem 'sass-rails', '~&gt; 5.0'</span>
+<span class="s">gem 'uglifier', '&gt;= 1.3.0'</span>
+<span class="s">gem 'coffee-rails', '~&gt; 4.1.0'</span>
+<span class="s">gem 'jquery-rails'</span>
+<span class="s">gem 'turbolinks'</span>
+<span class="s">gem 'jbuilder', '~&gt; 2.0'</span>
+<span class="s">gem 'sdoc', '~&gt; 0.4.0', group</span><span class="pi">:</span> <span class="s">:doc</span>
+<span class="s">gem 'rails_12factor'</span>
+
+<span class="s">group :development, :test do</span>
+  <span class="s">gem 'byebug'</span>
+  <span class="s">gem 'sqlite3'</span>
+<span class="s">end</span>
+
+<span class="s">group :development do</span>
+  <span class="s">gem 'web-console', '~&gt; 2.0'</span>
+  <span class="s">gem 'spring'</span>
+<span class="s">end</span>
+
+<span class="s">ruby "2.2.3"</span></code></pre></figure>
+
+<p>And we’ll update our <code>Gemfile.lock</code> by launching the <code>bundle install</code> command.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">~/rails-project$ </span>bundle install</code></pre></figure>
+
+<p>Let’s now update our database config file <code>config/database.yml</code>.</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">default</span><span class="pi">:</span> <span class="nl">&amp;default</span>
+  <span class="s">adapter</span><span class="pi">:</span> <span class="s">postgresql</span>
+  <span class="s">encoding</span><span class="pi">:</span> <span class="s">unicode</span>
+  <span class="s">pool</span><span class="pi">:</span> <span class="s">5</span>
+
+<span class="s">development</span><span class="pi">:</span>
+  <span class="s">&lt;&lt;</span><span class="pi">:</span> <span class="nv">*default</span>
+  <span class="s">database</span><span class="pi">:</span> <span class="s">myapp_development</span>
+
+<span class="s">test</span><span class="pi">:</span>
+  <span class="s">&lt;&lt;</span><span class="pi">:</span> <span class="nv">*default</span>
+  <span class="s">database</span><span class="pi">:</span> <span class="s">myapp_test</span>
+
+<span class="s">production</span><span class="pi">:</span>
+  <span class="s">&lt;&lt;</span><span class="pi">:</span> <span class="nv">*default</span>
+  <span class="s">database</span><span class="pi">:</span> <span class="s">myapp_production</span>
+  <span class="s">username</span><span class="pi">:</span> <span class="s">myapp</span>
+  <span class="s">password</span><span class="pi">:</span> <span class="s">&lt;%= ENV['MYAPP_DATABASE_PASSWORD'] %&gt;</span></code></pre></figure>
+
+<p>We’ll also need to add another database config file for Travis that we’ll name <code>config/database.yml.travis</code>. It’ll contain the default parameters for the postgreSQL database used by Travis CI for the tests.</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">default</span><span class="pi">:</span> <span class="nl">&amp;default</span>
+  <span class="s">adapter</span><span class="pi">:</span> <span class="s">postgresql</span>
+  <span class="s">encoding</span><span class="pi">:</span> <span class="s">unicode</span>
+  <span class="s">pool</span><span class="pi">:</span> <span class="s">5</span>
+
+<span class="s">development</span><span class="pi">:</span>
+  <span class="s">&lt;&lt;</span><span class="pi">:</span> <span class="nv">*default</span>
+  <span class="s">database</span><span class="pi">:</span> <span class="s">myapp_development</span>
+
+<span class="s">test</span><span class="pi">:</span>
+  <span class="s">&lt;&lt;</span><span class="pi">:</span> <span class="nv">*default</span>
+  <span class="s">database</span><span class="pi">:</span> <span class="s">travis_ci_test</span>
+  <span class="s">username</span><span class="pi">:</span> <span class="s">postgres</span>
+
+<span class="s">production</span><span class="pi">:</span>
+  <span class="s">&lt;&lt;</span><span class="pi">:</span> <span class="nv">*default</span>
+  <span class="s">database</span><span class="pi">:</span> <span class="s">myapp_production</span>
+  <span class="s">username</span><span class="pi">:</span> <span class="s">myapp</span>
+  <span class="s">password</span><span class="pi">:</span> <span class="s">&lt;%= ENV['MYAPP_DATABASE_PASSWORD'] %&gt;</span></code></pre></figure>
+
+<p>We’ll update our Travis configuration file <code>.travis.yml</code> by adding those lines. They tell Travis to create a postgreSQL database before to launch the tests and to use our special database config file for Travis.</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">before_script</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">psql -c 'create database travis_ci_test;' -U postgres</span>
+  <span class="pi">-</span> <span class="s">cp config/database.yml.travis config/database.yml</span></code></pre></figure>
+
+<p>Let’s now check that our application is still green on Travis.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">~/rails-project$ </span>git add --all
+<span class="gp">~/rails-project$ </span>git commit -m <span class="s2">"configuration pour heroku"</span>
+<span class="gp">~/rails-project$ </span>git push origin master</code></pre></figure>
+
+<p><img src="http://theblog.unpixel.fr/img/27.png" alt="Tests OK!" /></p>
+
+<p>Good :) We can now deploy our application on Heroku with those two lines:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">~/rails-project$ </span>heroku create
+<span class="gp">~/rails-project$ </span>git push heroku master</code></pre></figure>
+
+<p>Our website is now live and we can see it (and check the url) with the <code>heroku open</code> command.</p>
+
+<p>The last step is to link Heroku to Travis in order to deploy our application automatically if the tests pass.</p>
+
+<p>To do this, we’ll add those lines to our <code>.travis.yml</code> file:</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">deploy</span><span class="pi">:</span>
+  <span class="s">provider</span><span class="pi">:</span> <span class="s">heroku</span>
+  <span class="s">app</span><span class="pi">:</span>
+    <span class="s">master</span><span class="pi">:</span> <span class="s">name-of-your-heroku-instance</span></code></pre></figure>
+
+<p>Now we need to add our API key. But, as our <code>.travis.yml</code> file is public, we can’t just copy/paste it in the file, we’ll need to encrypt it. The best and simplest way to do this is to install the <a href="https://github.com/travis-ci/travis.rb">Travis CI Client</a>. The install process will depend to your operating system. I’m on OSX, but you can refer to the <a href="https://github.com/travis-ci/travis.rb#installation">installation guide</a> for other OS.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">~/rails-project$ </span>gem install travis -v 1.8.0 --no-rdoc --no-ri</code></pre></figure>
+
+<p>Now, we can generate our crypted API key.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">~/rails-project$ </span>travis encrypt <span class="k">$(</span>heroku auth:token<span class="k">)</span> --add deploy.api_key</code></pre></figure>
+
+<p>Our <code>.travis.yml</code> file should now contain an <code>api_key: secure:</code> line.</p>
+
+<p>“Et voilà!” Let’s test it now. We’ll add a new paragraphe to our welcome page, deploy it on github and see if everything’s going well.</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;h1&gt;</span>Bienvenu sur mon site Rails!<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;p&gt;</span>Ce paragraphe a été ajouté et doit être déployé automatiquement si les tests passent.<span class="nt">&lt;/p&gt;</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">~/rails-project$ </span>git commit -a -m <span class="s2">"ajout d'un nouveau paragraphe"</span>
+<span class="gp">~/rails-project$ </span>git push origin master</code></pre></figure>
+
+<p><img src="http://theblog.unpixel.fr/img/28.png" alt="New deploy" /></p>
+
+<p><img src="http://theblog.unpixel.fr/img/29.png" alt="Tests OK!" /></p>
+
+<p><img src="http://theblog.unpixel.fr/img/30.png" alt="Heroku updated" /></p>
+
+<p>That’s it for this tutorial. Stay tuned for next one.</p>
+
+
+    </div>
+
+    
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function() {
+        this.page.url = "http://theblog.unpixel.fr/2015-11-27-continuous-delivery-with-travis-and-heroku/"; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "/continuous-delivery-with-travis-and-heroku"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+          s = d.createElement('script');
+
+        s.src = '//unpixel.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+    </noscript>
+    
+
+  </div>
+
+</article>
+
+    </div>
+
+    <footer class="site-footer">
+  <div class="wrapper">
+    <ul class="social-media-list">
+      
+      <li>
+        <a href="https://github.com/konpa"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span></a>
+
+      </li>
+      
+      
+      <li>
+        <a href="https://twitter.com/1_pxl"><span class="icon icon--twitter"><svg viewBox="0 0 16 16"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span></a>
+
+      </li>
+      
+    </ul>
+  </div>
+</footer>
+
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-45588276-8', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+  </body>
+
+</html>
